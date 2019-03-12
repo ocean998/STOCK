@@ -16,15 +16,13 @@ def create_item(name):
         raise CreateItemError('items is full')
     return ['ok']
 
-
-def create_for_input():
-
+if __name__ == '__main__':
 
     try:
         rst = create_item('name')
         print(rst)
     except CreateItemError as e:
-        print(f'create item failed: {err_msg}', e)
+        print(f'create item failed:')
 
     else:
-        print(f'item<{name}> created')
+        print(f'item created')
