@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58a3c297-4e3f-4b44-a5d3-ae12eadf1f74" name="Default Changelist" comment="自定义异常，作为函数返回值">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+    <list default="true" id="58a3c297-4e3f-4b44-a5d3-ae12eadf1f74" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MACD.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PIC_MACD.py" beforeDir="false" afterPath="$PROJECT_DIR$/PIC_MACD.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macd_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/macd_base.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/macd_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="83" column="26" lean-forward="true" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
+            <state relative-caret-position="1944">
+              <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -43,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PIC_MACD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="306">
+              <caret line="111" column="26" lean-forward="true" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -311,18 +308,33 @@
       <option name="project" value="LOCAL" />
       <updated>1552490033480</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="pandas.DataFrame.plot 画图">
+      <created>1552490524560</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1552490524560</updated>
+    </task>
+    <task id="LOCAL-00005" summary="pandas.DataFrame.plot 画图">
+      <created>1552491718171</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1552491718171</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5493562" visible="true" weight="0.10181237" />
-      <window_info id="Structure" order="1" sideWeight="0.45064378" side_tool="true" visible="true" weight="0.10181237" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5472" visible="true" weight="0.102878466" />
+      <window_info id="Structure" order="1" sideWeight="0.4528" side_tool="true" visible="true" weight="0.102878466" />
       <window_info id="Favorites" order="2" sideWeight="0.44801715" side_tool="true" weight="0.11140725" />
       <window_info anchor="bottom" id="Python Console" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" visible="true" weight="0.32939914" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3997833" />
@@ -344,15 +356,16 @@
     <MESSAGE value="计算60分钟金叉，模块macd_t_60jc.py" />
     <MESSAGE value="自定义异常，作为函数返回值" />
     <MESSAGE value="列名 date -&gt; time 时间标签统一" />
-    <option name="LAST_COMMIT_MESSAGE" value="列名 date -&gt; time 时间标签统一" />
+    <MESSAGE value="pandas.DataFrame.plot 画图" />
+    <option name="LAST_COMMIT_MESSAGE" value="pandas.DataFrame.plot 画图" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/macd_test_2.py" />
     <entry file="file://$PROJECT_DIR$/MACD.py" />
     <entry file="file://$PROJECT_DIR$/macd_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="83" column="26" lean-forward="true" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
+        <state relative-caret-position="1944">
+          <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
@@ -402,8 +415,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PIC_MACD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="306">
+          <caret line="111" column="26" lean-forward="true" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
