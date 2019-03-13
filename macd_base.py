@@ -58,9 +58,7 @@ class MACD_INDEX:
             # data_list[-1].append(float(data_list[-1][-1])/float(data_list[-1][-2]))
             data_list.append(rs.get_row_data())
 
-        result = pd.DataFrame(
-            data_list,
-            columns=rs.fields)
+        result = pd.DataFrame(data_list, columns=rs.fields)
         # 修改列名 date-->time
         if self.jb in ['d', 'w', 'm']:
             result.rename(columns={'date': 'time'}, inplace=True)
@@ -68,12 +66,10 @@ class MACD_INDEX:
         for x in range(0, result.shape[0]):
             # print(str(xx.loc[x][0])[:12])
             if self.jb in ['60', '15']:
-                result.iloc[x,
-                            0] = result.iloc[x,
-                                             0][4:6] + '-' + result.iloc[x,
-                                                                         0][6:8] + ' ' + result.iloc[x,
-                                                                                                     0][8:10] + ':' + result.iloc[x,
-                                                                                                                                  0][10:12]
+                result.iloc[x, 0] = result.iloc[x, 0][4:6] + '-' +\
+                    result.iloc[x, 0][6:8] + ' ' +\
+                    result.iloc[x, 0][8:10] + ':' + \
+                    result.iloc[x, 0][10:12]
         return result
 
     def set_time(self, begin='2019', end='2019'):
@@ -481,7 +477,6 @@ class MACD_INDEX:
 
 
 if __name__ == "__main__":
-
     macd_60 = MACD_INDEX('60')
     macd_60.save_golden('D:\\0_stock_macd\\_日K线金叉.xls')
 
@@ -498,11 +493,10 @@ if __name__ == "__main__":
 
     macd_60.save_bottom('all', False)
 
-    # 周K线已经金叉，算日线即将金叉
-    # macd_d = MACD_INDEX('d')
+    # 周K线已经金叉，算日线即将金叉  # macd_d = MACD_INDEX('d')  #
     # macd_d.save_bing_golden('D:\\0_stock_macd\\_周K线金叉.xls')
 
     # stock_code = stock_base.get_stock_code('D:\\0_stock_macd\\_周K线金叉.xls')
-    # cnt = stock_code.shape[0]
+    # # cnt = stock_code.shape[0]
 
 # 单只股票调试
