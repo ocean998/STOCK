@@ -115,3 +115,4 @@ if __name__ == "__main__":
     data = macd_60.get_index('sz.000725')
     macd = macd_60.get_MACD(data)
     macd.plot()
+# pip install matplotlib
