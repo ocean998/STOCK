@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58a3c297-4e3f-4b44-a5d3-ae12eadf1f74" name="Default Changelist" comment="" />
+    <list default="true" id="58a3c297-4e3f-4b44-a5d3-ae12eadf1f74" name="Default Changelist" comment="自定义异常，作为函数返回值">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MACD.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PIC_MACD.py" beforeDir="false" afterPath="$PROJECT_DIR$/PIC_MACD.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macd_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/macd_base.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/macd_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="513" column="3" lean-forward="true" selection-start-line="513" selection-start-column="3" selection-end-line="516" selection-end-column="37" />
+            <state relative-caret-position="132">
+              <caret line="83" column="26" lean-forward="true" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -28,8 +34,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+            <state relative-caret-position="672">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PIC_MACD.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/macd_MWD.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -37,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stock_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="792">
               <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -49,17 +76,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/macd_test_dbl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="22" />
+            <state relative-caret-position="24">
+              <caret line="4" selection-end-line="7" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/macd_t_60jc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="96">
+              <caret line="4" selection-start-line="4" selection-end-line="7" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -69,6 +99,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>开始时间</find>
+      <find>['date']</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -79,10 +110,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/stock_base.py" />
-        <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/macd_base.py" />
         <option value="$PROJECT_DIR$/macd_test_dbl.py" />
         <option value="$PROJECT_DIR$/macd_t_60jc.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/macd_base.py" />
+        <option value="$PROJECT_DIR$/PIC_MACD.py" />
       </list>
     </option>
   </component>
@@ -103,13 +135,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="STOCK_INDEX" type="b2602c69:ProjectViewProjectNode" />
-              <item name="STOCK_INDEX" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="STOCK_INDEX" type="b2602c69:ProjectViewProjectNode" />
-              <item name="STOCK_INDEX" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="STOCK" type="b2602c69:ProjectViewProjectNode" />
+              <item name="STOCK" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -119,7 +146,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -133,7 +160,49 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.macd_t_60jc">
+  <component name="RunManager" selected="Python.PIC_MACD">
+    <configuration name="PIC_MACD" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="STOCK_INDEX" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PIC_MACD.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="macd_MWD" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="STOCK_INDEX" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/macd_MWD.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="macd_base" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="STOCK_INDEX" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -199,11 +268,16 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.macd_t_60jc" />
+        <item itemvalue="Python.PIC_MACD" />
         <item itemvalue="Python.macd_base" />
+        <item itemvalue="Python.macd_MWD" />
+        <item itemvalue="Python.macd_t_60jc" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR,SHOW_INHERITED" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -223,30 +297,43 @@
       <option name="project" value="LOCAL" />
       <updated>1552376649048</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="自定义异常，作为函数返回值">
+      <created>1552384646481</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1552384646481</updated>
+    </task>
+    <task id="LOCAL-00003" summary="列名 date -&gt; time 时间标签统一">
+      <created>1552490033479</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1552490033480</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5542299" visible="true" weight="0.10927505" />
-      <window_info id="Structure" order="1" sideWeight="0.44577006" side_tool="true" visible="true" weight="0.10927505" />
-      <window_info id="Favorites" order="2" sideWeight="0.44577006" side_tool="true" weight="0.10927505" />
-      <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Debug" order="6" weight="0.3997833" />
-      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5493562" visible="true" weight="0.10181237" />
+      <window_info id="Structure" order="1" sideWeight="0.45064378" side_tool="true" visible="true" weight="0.10181237" />
+      <window_info id="Favorites" order="2" sideWeight="0.44801715" side_tool="true" weight="0.11140725" />
+      <window_info anchor="bottom" id="Python Console" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Run" order="3" visible="true" weight="0.3251599" />
+      <window_info active="true" anchor="right" id="Run" order="3" visible="true" weight="0.3251599" />
+      <window_info anchor="right" id="Version Control" order="4" weight="0.32889125" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -255,13 +342,17 @@
       <path value="$PROJECT_DIR$/stock" />
     </ignored-roots>
     <MESSAGE value="计算60分钟金叉，模块macd_t_60jc.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="计算60分钟金叉，模块macd_t_60jc.py" />
+    <MESSAGE value="自定义异常，作为函数返回值" />
+    <MESSAGE value="列名 date -&gt; time 时间标签统一" />
+    <option name="LAST_COMMIT_MESSAGE" value="列名 date -&gt; time 时间标签统一" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/macd_test_2.py">
+    <entry file="file://$PROJECT_DIR$/macd_test_2.py" />
+    <entry file="file://$PROJECT_DIR$/MACD.py" />
+    <entry file="file://$PROJECT_DIR$/macd_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="17" lean-forward="true" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state relative-caret-position="132">
+          <caret line="83" column="26" lean-forward="true" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
@@ -270,14 +361,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        <state relative-caret-position="672">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/macd_MWD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stock_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="792">
           <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
@@ -285,27 +383,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/macd_base.py">
+    <entry file="file://$PROJECT_DIR$/macd_test_dbl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="513" column="3" lean-forward="true" selection-start-line="513" selection-start-column="3" selection-end-line="516" selection-end-column="37" />
+        <state relative-caret-position="24">
+          <caret line="4" selection-end-line="7" selection-end-column="33" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/macd_test_dbl.py">
+    <entry file="file://$PROJECT_DIR$/macd_t_60jc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="96">
+          <caret line="4" selection-start-line="4" selection-end-line="7" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/macd_t_60jc.py">
+    <entry file="file://$PROJECT_DIR$/PIC_MACD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="570">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

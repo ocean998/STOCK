@@ -114,5 +114,4 @@ if __name__ == "__main__":
     macd_60 = MACD_INDEX('60')
     data = macd_60.get_index('sz.000725')
     macd = macd_60.get_MACD(data)
-    # macd.plot()
-    print(macd)
+    macd.plot()

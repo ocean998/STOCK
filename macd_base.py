@@ -8,7 +8,7 @@ class MACD_INDEX:
             计算macd指标，需要初始化周期级别
     '''
 
-    def __init__(self, jb='d' ):
+    def __init__(self, jb='d'):
         '''
                 根据周期初始化 开始时间，结束时间，股票列表
         '''
@@ -39,7 +39,7 @@ class MACD_INDEX:
         if self.jb in ['d', 'w', 'm']:
             indexs = 'date,close,volume,amount,turn'
         else:
-            indexs = 'date,time,close,volume,amount'
+            indexs = 'time,close,volume,amount'
         rs = bs.query_history_k_data_plus(
             code,
             indexs,
@@ -57,19 +57,26 @@ class MACD_INDEX:
             # 获取一条记录，将记录合并在一起
             # data_list[-1].append(float(data_list[-1][-1])/float(data_list[-1][-2]))
             data_list.append(rs.get_row_data())
-        if self.jb in ['d', 'w', 'm']:
-            sort_name = 'date'
-        else:
-            sort_name = 'time'
+
         result = pd.DataFrame(
             data_list,
-            columns=rs.fields).sort_values(
-            by=sort_name,
-            ascending=True)
-        # #### 登出系统 ####
-        # bs.logout()
+            columns=rs.fields)
+        # 修改列名 date-->time
+        if self.jb in ['d', 'w', 'm']:
+            result.rename(columns={'date': 'time'}, inplace=True)
+
+        for x in range(0, result.shape[0]):
+            # print(str(xx.loc[x][0])[:12])
+            if self.jb in ['60', '15']:
+                result.iloc[x,
+                            0] = result.iloc[x,
+                                             0][4:6] + '-' + result.iloc[x,
+                                                                         0][6:8] + ' ' + result.iloc[x,
+                                                                                                     0][8:10] + ':' + result.iloc[x,
+                                                                                                                                  0][10:12]
         return result
-    def set_time( self,begin='2019', end='2019' ):
+
+    def set_time(self, begin='2019', end='2019'):
         '''重新设置开始时间和结束时间'''
         if begin != '2019':
             self.begin = begin
@@ -77,6 +84,7 @@ class MACD_INDEX:
             self.end = end
 
         print('k线级别:', self.jb, '\t新设置的开始时间:', self.begin, '\t结束时间:', self.end)
+
     def get_MACD(self, data, sema=12, lema=26, m_ema=9):
         '''
             根据股票代码计算macd结果，设置macd属性
@@ -84,10 +92,7 @@ class MACD_INDEX:
             sema,lema,m_ema分别是macd的三个参数
         '''
         xx = pd.DataFrame()
-        if self.jb in ['d', 'w', 'm']:
-            xx['date'] = data['date']
-        else:
-            xx['time'] = data['time']
+        xx['time'] = data['time']
         xx['dif'] = data['close'].ewm(adjust=False,
                                       alpha=2 / (sema + 1),
                                       ignore_na=True).mean() - data['close'].ewm(adjust=False,
@@ -131,7 +136,7 @@ class MACD_INDEX:
             for idx in range(0, dead_len - 1):
                 if macd_jc.iloc[idx]['macd'] - \
                         macd_jc.iloc[(idx + 1)]['macd'] >= 0:
-                    x.append( 'n')
+                    x.append('n')
                 else:
                     if isprt:
                         print(idx,
@@ -139,7 +144,7 @@ class MACD_INDEX:
                               macd_jc.iloc[idx]['macd'],
                               '-',
                               macd_jc.iloc[(idx + 1)]['macd'])
-                    x.append( 'y')
+                    x.append('y')
             if x[-1] == 'y':
                 rst.append('即将金叉')
             if isprt:
@@ -151,10 +156,7 @@ class MACD_INDEX:
 
         if len(rst) == 1:
             rst.append(self.code.split('.')[1])
-            if self.jb in ['m', 'w', 'd']:
-                rst.append(dead_macd.iloc[0]['date'])
-            if self.jb in ['60', '15']:
-                rst.append(dead_macd.iloc[0]['time'])
+            rst.append(dead_macd.iloc[0]['time'])
             rst.append(dead_macd.iloc[-1]['macd'])
             rst.append(dead_macd.iloc[-2]['macd'])
             rst.append(self.code)
@@ -211,10 +213,7 @@ class MACD_INDEX:
                 # MACD 金叉
                 rst.append('golden')
                 rst.append(self.code.split('.')[1])
-                if self.jb in ['m', 'w', 'd']:
-                    rst.append(macd.iloc[-i + 1]['date'])
-                if self.jb in ['60', '15']:
-                    rst.append(macd.iloc[-i + 1]['time'])
+                rst.append(macd.iloc[-i + 1]['time'])
                 if macd.iloc[-i]['dif'] >= 0.001:
                     rst.append('up0')
                 else:
@@ -241,35 +240,23 @@ class MACD_INDEX:
         if macd.iloc[-1]['macd'] < 0:
             return rst
 
-        if self.jb in ['m', 'w', 'd']:
-            rst.append(macd.iloc[-1]['date'])
-        if self.jb in ['60', '15']:
-            rst.append(macd.iloc[-1]['time'])
+        rst.append(macd.iloc[-1]['time'])
         rst2.append(macd.iloc[-1]['macd'])
-        for idx in range(1,cnt-1):
+        for idx in range(1, cnt - 1):
             if len(rst2) == 1:
                 # 从右向左第一次为死叉,macd应从红转绿,记录最后的红线时间
                 if macd.iloc[-idx]['macd'] >= 0:
-                    if self.jb in ['m', 'w', 'd']:
-                        rst.append(macd.iloc[-1]['date'])
-                    if self.jb in ['60', '15']:
-                        rst.append(macd.iloc[-1]['time'])
+                    rst.append(macd.iloc[-1]['time'])
                     rst2.append(macd.iloc[-idx]['macd'])
             if len(rst2) == 2:
                 # 从右向左第二次为金叉,macd应从绿转红,记录最后的绿线时间
                 if macd.iloc[-idx]['macd'] < 0:
-                    if self.jb in ['m', 'w', 'd']:
-                        rst.append(macd.iloc[-1]['date'])
-                    if self.jb in ['60', '15']:
-                        rst.append(macd.iloc[-1]['time'])
+                    rst.append(macd.iloc[-1]['time'])
                     rst2.append(macd.iloc[-idx]['macd'])
             if len(rst2) == 3:
                 # 从右向左第三次为死叉,macd应从红转绿,记录最后的红线时间
                 if macd.iloc[-idx]['macd'] >= 0:
-                    if self.jb in ['m', 'w', 'd']:
-                        rst.append(macd.iloc[-1]['date'])
-                    if self.jb in ['60', '15']:
-                        rst.append(macd.iloc[-1]['time'])
+                    rst.append(macd.iloc[-1]['time'])
                     rst2.append(macd.iloc[-idx]['macd'])
 
         if len(rst) == 4:
@@ -277,12 +264,13 @@ class MACD_INDEX:
                 print(rst)
                 print(rst2)
             return rst2
-        else: return []
+        else:
+            return []
 
     def analyze_bottom(self, macd, isptt=False):
         ''' 分析macd 底背离 从右向左 先有死叉再有金叉，再判断将要金叉，及其与左边金叉高度
         '''
-        rst = ['date']
+        rst = ['time']
         rst2 = []
         cnt = int(macd.shape[0])
         if cnt < 4:
@@ -292,53 +280,46 @@ class MACD_INDEX:
         if macd.iloc[-1]['macd'] > 0:
             return rst
 
-
-        rst.clear( )
-        if self.jb in ['m', 'w', 'd']:
-            rst.append(macd.iloc[-1]['date'])
-        if self.jb in ['60', '15']:
-            rst.append(macd.iloc[-1]['time'])
+        rst.clear()
+        rst.append(macd.iloc[-1]['time'])
         rst2.append(macd.iloc[-1]['dif'])
 
-        for idx in range(1,cnt-1):
+        for idx in range(1, cnt - 1):
             if len(rst2) == 1:
                 # 从右向左先死叉,macd应从红转绿,记录最后的红线时间
                 if macd.iloc[-idx]['macd'] >= 0:
-                    if self.jb in ['m', 'w', 'd']:
-                        rst.append(macd.iloc[-1]['date'])
-                    if self.jb in ['60', '15']:
-                        rst.append(macd.iloc[-1]['time'])
+                    rst.append(macd.iloc[-1]['time'])
                     rst2.append(macd.iloc[-idx]['dif'])
             if len(rst2) == 2:
                 # 从右向左死叉后又金叉,macd应从绿转红,记录最后的绿线时间
                 if macd.iloc[-idx]['macd'] < 0:
-                    if self.jb in ['m', 'w', 'd']:
-                        rst.append(macd.iloc[-1]['date'])
-                    if self.jb in ['60', '15']:
-                        rst.append(macd.iloc[-1]['time'])
+                    rst.append(macd.iloc[-1]['time'])
                     rst2.append(macd.iloc[-idx]['dif'])
 
         if len(rst2) == 3:
             if rst2[0] > rst2[0]:
-            #     符合底背离条件，需要再判断是否即将金叉
-                bing_golden = self.analyze_bing_golden(macd,isptt)
+                #     符合底背离条件，需要再判断是否即将金叉
+                bing_golden = self.analyze_bing_golden(macd, isptt)
                 if len(bing_golden) > 3:
-            #         将要金叉，符合背离，本只股票，将要底背离
+                    #         将要金叉，符合背离，本只股票，将要底背离
                     if isptt:
                         print('\n 股票代码：', self.code)
-                        print( rst )
-                        print( rst2 )
+                        print(rst)
+                        print(rst2)
                     dbl = []
                     dbl.append('即将底背离')
-                    dbl.append( self.code.split( '.' )[ 1 ] )
+                    dbl.append(self.code.split('.')[1])
                     dbl.append(rst[0])
                     dbl.append(rst2[0])
-                    dbl.append( rst[ 2 ] )
+                    dbl.append(rst[2])
                     dbl.append(self.code)
                     return dbl
-                else: return rst
-            else: return rst
-        else: return rst
+                else:
+                    return rst
+            else:
+                return rst
+        else:
+            return rst
 
     def save_golden(self, market='all'):
         df_rst = pd.DataFrame(
@@ -422,7 +403,6 @@ class MACD_INDEX:
         print('\n \t\t', '完成！\n')
         df_rst.to_excel(self.save_name, sheet_name='将要金叉清单')
 
-
     def save_bottom(self, market='all', isprt=False):
         df_rst = pd.DataFrame(
             columns=(
@@ -457,7 +437,7 @@ class MACD_INDEX:
             code = self.get_index(stock_code.iloc[x]['stock_code'])
             df2 = self.get_MACD(code)
             dbl_rst = self.analyze_bottom(df2, isprt)
-            if len( dbl_rst  ) > 3 :
+            if len(dbl_rst) > 3:
                 line += 1
                 df_rst.loc[line] = dbl_rst
 
@@ -498,10 +478,12 @@ class MACD_INDEX:
             code = self.get_index(stock_code.iloc[x]['stock_code'])
             df2 = self.get_MACD(code)
             df3 = self.analyze_top(df2, isprt)
+
+
 if __name__ == "__main__":
 
-    # macd_60 = MACD_INDEX('60')
-    # macd_60.save_golden('D:\\0_stock_macd\\_日K线金叉.xls')
+    macd_60 = MACD_INDEX('60')
+    macd_60.save_golden('D:\\0_stock_macd\\_日K线金叉.xls')
 
     # macd_15 = MACD_INDEX('15')
     # macd_15.save_golden('D:\\0_stock_macd\\_60分钟K线金叉.xls')
@@ -512,10 +494,9 @@ if __name__ == "__main__":
     # macd_60.save_bing_golden('D:\\0_stock_macd\\_日K线金叉.xls', False)
 
     macd_60 = MACD_INDEX('60')
-    macd_60.set_time('2018-06-01','2018-12-11')
+    macd_60.set_time('2018-06-01', '2018-12-11')
 
     macd_60.save_bottom('all', False)
-
 
     # 周K线已经金叉，算日线即将金叉
     # macd_d = MACD_INDEX('d')
