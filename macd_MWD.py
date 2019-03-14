@@ -11,3 +11,6 @@ if __name__ == '__main__':
 
 	macd_d = mb.MACD_INDEX('d')
 	macd_d.save_golden('D:\\0_stock_macd\\_周K线金叉.xls')
+
+	macd_d = mb.MACD_INDEX('60')
+	macd_d.save_bing_golden('D:\\0_stock_macd\\_周K线金叉.xls')
