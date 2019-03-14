@@ -119,6 +119,7 @@ if __name__ == "__main__":
     print('macd 图形')
 
     # macd.plot(x='time',y='macd',y='dif',color='black', y='dea', color='yello')
-    macd.plot(x='time', y='macd',color='blue', y='dif', color='black')
+    # macd.plot(x='time', y='macd',color='blue', y='dif', color='black')
+    macd.plot()
     plt.show()
 # pip install matplotlib
