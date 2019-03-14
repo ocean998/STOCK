@@ -1,7 +1,7 @@
 import baostock as bs
 import pandas as pd
 import stock_base
-
+import matplotlib.pyplot as plt
 
 class MACD_INDEX:
     '''
@@ -114,6 +114,11 @@ if __name__ == "__main__":
     macd_60 = MACD_INDEX('60')
     data = macd_60.get_index('sz.000725')
     macd = macd_60.get_MACD(data)
+    macd.set_index('time')
     print(macd)
-    macd.plot(x = 'time', y='macd')
+    print('macd 图形')
+
+    # macd.plot(x='time',y='macd',y='dif',color='black', y='dea', color='yello')
+    macd.plot(x='time', y='macd',color='blue', y='dif', color='black')
+    plt.show()
 # pip install matplotlib

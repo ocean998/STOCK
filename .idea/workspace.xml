@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58a3c297-4e3f-4b44-a5d3-ae12eadf1f74" name="Default Changelist" comment="">
+    <list default="true" id="58a3c297-4e3f-4b44-a5d3-ae12eadf1f74" name="Default Changelist" comment="pandas.DataFrame.plot 画图">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PIC_MACD.py" beforeDir="false" afterPath="$PROJECT_DIR$/PIC_MACD.py" afterDir="false" />
     </list>
@@ -19,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/macd_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1944">
+            <state>
               <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -40,10 +40,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PIC_MACD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="111" column="26" lean-forward="true" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
+            <state relative-caret-position="170">
+              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/numpy_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="568">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -143,7 +155,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -242,7 +254,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="numpy_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="STOCK_INDEX" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -254,7 +266,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/numpy_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -266,10 +278,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.PIC_MACD" />
+        <item itemvalue="Python.numpy_test" />
         <item itemvalue="Python.macd_base" />
         <item itemvalue="Python.macd_MWD" />
         <item itemvalue="Python.macd_t_60jc" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -322,19 +334,26 @@
       <option name="project" value="LOCAL" />
       <updated>1552491718171</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="pandas.DataFrame.plot 画图">
+      <created>1552529355860</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1552529355860</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5472" visible="true" weight="0.102878466" />
-      <window_info id="Structure" order="1" sideWeight="0.4528" side_tool="true" visible="true" weight="0.102878466" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.54530746" visible="true" weight="0.10394456" />
+      <window_info id="Structure" order="1" sideWeight="0.45469254" side_tool="true" visible="true" weight="0.10394456" />
       <window_info id="Favorites" order="2" sideWeight="0.44801715" side_tool="true" weight="0.11140725" />
       <window_info anchor="bottom" id="Python Console" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" visible="true" weight="0.32939914" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3997833" />
@@ -364,7 +383,7 @@
     <entry file="file://$PROJECT_DIR$/MACD.py" />
     <entry file="file://$PROJECT_DIR$/macd_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1944">
+        <state>
           <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -413,10 +432,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/numpy_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PIC_MACD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="111" column="26" lean-forward="true" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
+        <state relative-caret-position="170">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
