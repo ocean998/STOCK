@@ -3,6 +3,7 @@ import pandas as pd
 import stock_base
 import matplotlib.pyplot as plt
 
+
 class MACD_INDEX:
     '''
             计算macd指标，需要初始化周期级别
@@ -120,6 +121,6 @@ if __name__ == "__main__":
 
     # macd.plot(x='time',y='macd',y='dif',color='black', y='dea', color='yello')
     # macd.plot(x='time', y='macd',color='blue', y='dif', color='black')
-    macd.plot()
+    macd.plot(x='time',y = ['dif','macd','dea'], color=['blue','green','yellow'])
     plt.show()
 # pip install matplotlib
