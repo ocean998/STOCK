@@ -1,5 +1,7 @@
 class CreateItemError(Exception):
     """"创建 Item 失败时抛出的异常"""
+    def __init__(self, msg):
+        self.msg = msg
     pass
 
 
@@ -22,7 +24,7 @@ if __name__ == '__main__':
         rst = create_item('name')
         print(rst)
     except CreateItemError as e:
-        print(f'create item failed:')
+        print(f'create item failed:', e.msg)
 
     else:
         print(f'item created')
