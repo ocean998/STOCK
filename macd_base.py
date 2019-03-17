@@ -420,8 +420,11 @@ class MACD_INDEX:
             except ReturnError:
                 continue
 
-            df3 = self.analyze_bing_golden(df2, isprt)
-            if len(df3) > 3:
+            try:
+                df3 = self.analyze_bing_golden(df2, isprt)
+            except ReturnError:
+                continue
+            else:
                 line += 1
                 df_rst.loc[line] = df3
 
