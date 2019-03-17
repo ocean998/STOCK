@@ -214,6 +214,8 @@ class MACD_INDEX:
                 continue
             else:
                 # MACD 金叉
+                if macd.iloc[-1]['dif'] < macd.iloc[-2]['dif'] < macd.iloc[-3]['dif']:
+                    raise ReturnError( self.code+'，金叉后开口方向没有向上！' )
                 rst.append('golden')
                 rst.append(self.code.split('.')[1])
                 rst.append(macd.iloc[-i + 1]['time'])
@@ -274,12 +276,12 @@ class MACD_INDEX:
         rst = ['time']
         rst2 = []
         cnt = int(macd.shape[0])
-        if cnt < 4:
-            return rst
+        if cnt < 40:
+            raise ReturnError( self.code+'，MACD少于40周期，不判断底背离！' )
 
         # 红柱结束直接退出
         if macd.iloc[-1]['macd'] > 0:
-            return rst
+            raise ReturnError( self.code+'，以红柱结束，已过底背离！' )
 
         rst.clear()
         rst.append(macd.iloc[-1]['time'])
@@ -298,11 +300,12 @@ class MACD_INDEX:
                     rst2.append(macd.iloc[-idx]['dif'])
 
         if len(rst2) == 3:
-            if rst2[0] > rst2[0]:
-                #     符合底背离条件，需要再判断是否即将金叉
+            # rst2[0]：dif将要金叉的高度 ， rst2[2]：第一次金叉的高度,  都要在0轴下
+            if 0 > rst2[0] > rst2[2]:
+                # 符合底背离条件，需要再判断是否即将金叉
                 bing_golden = self.analyze_bing_golden(macd, isptt)
                 if len(bing_golden) > 3:
-                    #         将要金叉，符合背离，本只股票，将要底背离
+                    # 将要金叉，符合背离，本只股票，将要底背离
                     if isptt:
                         print('\n 股票代码：', self.code)
                         print(rst)
@@ -316,11 +319,11 @@ class MACD_INDEX:
                     dbl.append(self.code)
                     return dbl
                 else:
-                    return rst
+                    raise ReturnError( self.code+'，不是底背离，没有将要金叉！' )
             else:
-                return rst
+                raise ReturnError( self.code+'，不是底背离，三次交叉不符合条件！' )
         else:
-            return rst
+            raise ReturnError( self.code+'，不是底背离，不是三次交叉！' )
 
     def save_golden(self, market='all'):
         df_rst = pd.DataFrame(
@@ -465,8 +468,11 @@ class MACD_INDEX:
                 df2 = self.get_MACD(df)
             except ReturnError:
                 continue
-            dbl_rst = self.analyze_bottom(df2, isprt)
-            if len(dbl_rst) > 3:
+            try:
+                dbl_rst = self.analyze_bottom(df2, isprt)
+            except ReturnError:
+                continue
+            else:
                 line += 1
                 df_rst.loc[line] = dbl_rst
 
