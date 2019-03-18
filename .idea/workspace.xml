@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="58a3c297-4e3f-4b44-a5d3-ae12eadf1f74" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/macd_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/macd_base.py" afterDir="false" />
+=======
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +22,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/macd_base.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="-786">
               <caret line="393" column="52" lean-forward="true" selection-start-line="393" selection-start-column="52" selection-end-line="393" selection-end-column="52" />
+=======
+            <state relative-caret-position="379">
+              <caret line="300" lean-forward="true" selection-start-line="300" selection-end-line="300" />
+>>>>>>> Stashed changes
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -52,8 +60,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/pandas/core/internals/construction.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="168">
               <caret line="211" selection-start-line="211" selection-end-line="211" />
+=======
+            <state relative-caret-position="3168">
+              <caret line="135" column="8" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="8" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -61,8 +74,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/pandas/core/indexes/range.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="176">
               <caret line="513" selection-start-line="513" selection-end-line="513" />
+=======
+            <state relative-caret-position="1032">
+              <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -70,8 +91,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/macd_MWD.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="240">
               <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+=======
+            <state relative-caret-position="216">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -80,7 +106,7 @@
         <entry file="file://$PROJECT_DIR$/macd_t_60jc.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -129,11 +155,14 @@
       <find>get_MACD</find>
       <find>开口</find>
       <find>analyze_golden</find>
-      <find>analyze_bottom</find>
       <find>return</find>
+<<<<<<< Updated upstream
       <find>dif</find>
       <find>即将金叉日期</find>
       <find>金叉日期</find>
+=======
+      <find>analyze_bottom</find>
+>>>>>>> Stashed changes
     </findStrings>
     <replaceStrings>
       <replace>macd</replace>
@@ -174,7 +203,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -186,6 +214,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -204,8 +233,13 @@
       </list>
     </option>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Python.macd_MWD">
     <configuration name="周线级别买点" type="PythonConfigurationType" factoryName="Python">
+=======
+  <component name="RunManager" selected="Python.macd_t_60jc">
+    <configuration name="PIC_MACD" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> Stashed changes
       <module name="STOCK_INDEX" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -333,11 +367,17 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.macd_t_60jc" />
         <item itemvalue="Python.macd_MWD" />
         <item itemvalue="Python.stock_base" />
         <item itemvalue="Python.macd_base" />
+<<<<<<< Updated upstream
         <item itemvalue="Python.macd_t_60jc" />
         <item itemvalue="Python.test" />
+=======
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.PIC_MACD" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
@@ -426,6 +466,7 @@
       <updated>1552839510282</updated>
     </task>
     <task id="LOCAL-00011" summary="return raise">
+<<<<<<< Updated upstream
       <created>1552897821916</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
@@ -445,13 +486,45 @@
       <window_info anchor="bottom" id="Python Console" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5010661" side_tool="true" weight="0.324295" />
+=======
+      <created>1552839778523</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1552839778523</updated>
+    </task>
+    <task id="LOCAL-00012" summary="return raise">
+      <created>1552842354029</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1552842354029</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.54172987" visible="true" weight="0.111907385" />
+      <window_info id="Structure" order="1" sideWeight="0.4582701" side_tool="true" visible="true" weight="0.111907385" />
+      <window_info id="Favorites" order="2" sideWeight="0.44801715" side_tool="true" weight="0.11140725" />
+      <window_info anchor="bottom" id="Python Console" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="2" sideWeight="0.50053304" side_tool="true" visible="true" weight="0.31496882" />
+>>>>>>> Stashed changes
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="8" />
+<<<<<<< Updated upstream
       <window_info anchor="bottom" auto_hide="true" id="Run" order="9" sideWeight="0.4989339" weight="0.324295" />
+=======
+      <window_info anchor="bottom" auto_hide="true" id="Run" order="9" sideWeight="0.49946696" weight="0.3251073" />
+>>>>>>> Stashed changes
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -526,6 +599,7 @@
     <entry file="file://$PROJECT_DIR$/macd_test_2.py" />
     <entry file="file://$PROJECT_DIR$/MACD.py" />
     <entry file="file://$PROJECT_DIR$/macd_test_dbl.py" />
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -537,6 +611,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3168">
           <caret line="135" column="8" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="8" />
+=======
+    <entry file="file://$PROJECT_DIR$/macd_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="300" lean-forward="true" selection-start-line="300" selection-end-line="300" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -556,6 +639,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/pandas/core/indexes/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -581,12 +665,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="323" selection-start-line="323" selection-end-line="323" />
+=======
+    <entry file="file://$PROJECT_DIR$/PIC_MACD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3168">
+          <caret line="135" column="8" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stock_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1032">
+          <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/macd_MWD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/macd_t_60jc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
+<<<<<<< Updated upstream
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
@@ -622,6 +730,9 @@
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
+=======
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>

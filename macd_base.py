@@ -396,15 +396,15 @@ class MACD_INDEX:
         stock_code = stock_base.get_stock_code(market)
 
         if self.jb == 'm':
-            pre = '月K线金叉'
+            pre = '月K线(即将)金叉'
         if self.jb == 'd':
-            pre = '日K线金叉'
+            pre = '日K线(即将)金叉'
         if self.jb == 'w':
-            pre = '周K线金叉'
+            pre = '周K线(即将)金叉'
         if self.jb == '60':
-            pre = '60分钟K线金叉'
+            pre = '60分钟K(即将)线金叉'
         if self.jb == '15':
-            pre = '15分钟K线金叉'
+            pre = '15分钟K线(即将)金叉'
 
         self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
         line = 0
@@ -425,7 +425,7 @@ class MACD_INDEX:
                 continue
 
             try:
-                df3 = self.analyze_golden(df2)
+                df3 = self.analyze_bing_golden(df2)
             except ReturnError:
                 continue
             else:
