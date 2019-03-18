@@ -7,6 +7,7 @@ class ReturnError(Exception):
     """"各函数返回异常结果时抛出的异常"""
 
     def __init__(self, msg):
+        Exception.__init__(self)
         self.msg = msg
 
 
@@ -214,7 +215,7 @@ class MACD_INDEX:
                 continue
             else:
                 # MACD 金叉
-                if macd.iloc[-1]['dif'] < macd.iloc[-2]['dif'] < macd.iloc[-3]['dif']:
+                if macd.iloc[-1]['macd'] < macd.iloc[-2]['macd'] < macd.iloc[-3]['macd']:
                     raise ReturnError( self.code+'，金叉后开口方向没有向上！' )
                 rst.append('golden')
                 rst.append(self.code.split('.')[1])
@@ -291,35 +292,37 @@ class MACD_INDEX:
             if len(rst2) == 1:
                 # 从右向左先死叉,macd应从红转绿,记录最后的红线时间
                 if macd.iloc[-idx]['macd'] >= 0:
-                    rst.append(macd.iloc[-1]['time'])
+                    rst.append(macd.iloc[-idx]['time'])
                     rst2.append(macd.iloc[-idx]['dif'])
             if len(rst2) == 2:
                 # 从右向左死叉后又金叉,macd应从绿转红,记录最后的绿线时间
                 if macd.iloc[-idx]['macd'] < 0:
-                    rst.append(macd.iloc[-1]['time'])
+                    rst.append(macd.iloc[-idx]['time'])
                     rst2.append(macd.iloc[-idx]['dif'])
 
         if len(rst2) == 3:
             # rst2[0]：dif将要金叉的高度 ， rst2[2]：第一次金叉的高度,  都要在0轴下
             if 0 > rst2[0] > rst2[2]:
                 # 符合底背离条件，需要再判断是否即将金叉
-                bing_golden = self.analyze_bing_golden(macd, isptt)
-                if len(bing_golden) > 3:
-                    # 将要金叉，符合背离，本只股票，将要底背离
-                    if isptt:
-                        print('\n 股票代码：', self.code)
-                        print(rst)
-                        print(rst2)
-                    dbl = []
-                    dbl.append('即将底背离')
-                    dbl.append(self.code.split('.')[1])
-                    dbl.append(rst[0])
-                    dbl.append(rst2[0])
-                    dbl.append(rst[2])
-                    dbl.append(self.code)
-                    return dbl
-                else:
+                try:
+                    bing_golden = self.analyze_bing_golden(macd, isptt)
+                except ReturnError:
                     raise ReturnError( self.code+'，不是底背离，没有将要金叉！' )
+
+                # 将要金叉，符合背离，本只股票，将要底背离
+                if isptt:
+                    print('\n 股票代码：', self.code)
+                    print(rst)
+                    print(rst2)
+                dbl = []
+                dbl.append('即将底背离')
+                dbl.append(self.code.split('.')[1])
+                dbl.append(rst[0])
+                dbl.append(rst2[0])
+                dbl.append(rst[2])
+                dbl.append(rst2[2])
+                return dbl
+
             else:
                 raise ReturnError( self.code+'，不是底背离，三次交叉不符合条件！' )
         else:
@@ -378,28 +381,85 @@ class MACD_INDEX:
         print('\n\t\t', '完成！\n')
         df_rst.to_excel(self.save_name, sheet_name='金叉清单')
 
-    def save_bing_golden(self, market='all', isprt=False):
+    def save_bing_golden(self, market='all'):
+        """周线选股时，日线即将金叉，或者已经金叉的日线级别增强判断"""
         df_rst = pd.DataFrame(
             columns=(
                 '类别',
                 '股票代码',
-                '即将金叉日期',
+                '金叉日期',
                 '快线强弱',
-                '将要金叉周期',
+                '红柱数量',
                 '大陆代码'))
+        # print('\r', str(10 - i).ljust(10), end='')
 
         stock_code = stock_base.get_stock_code(market)
 
         if self.jb == 'm':
-            pre = '月K线 即将金叉'
+            pre = '月K线金叉'
         if self.jb == 'd':
-            pre = '日K线 即将金叉'
+            pre = '日K线金叉'
         if self.jb == 'w':
-            pre = '周K线 即将金叉'
+            pre = '周K线金叉'
         if self.jb == '60':
-            pre = '60分钟K线 即将金叉'
+            pre = '60分钟K线金叉'
         if self.jb == '15':
-            pre = '15分钟K线 即将金叉'
+            pre = '15分钟K线金叉'
+
+        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
+        line = 0
+        cnt = stock_code.shape[0]
+        print('开始计算,总数 ' + str(cnt) + ' 只')
+        for x in range(cnt):
+            pre2 = '剩余 ' + str(cnt - x - 1) + ' 只，完成 {:.2f}%'.format(
+                (x + 1) * 100 / cnt) + ' 选出 ' + str(line) + ' 只'
+            print('\r', pre, pre2.ljust(10), end='')
+            try:
+                df = self.get_index(stock_code.iloc[x]['stock_code'])
+            except ReturnError:
+                continue
+
+            try:
+                df2 = self.get_MACD(df)
+            except ReturnError:
+                continue
+
+            try:
+                df3 = self.analyze_golden(df2)
+            except ReturnError:
+                continue
+            else:
+                line += 1
+                df_rst.loc[line] = df3
+
+        print('\n\t\t', '完成！\n')
+        df_rst.to_excel(self.save_name, sheet_name='金叉清单')
+
+
+    def save_day_golden(self, market='all', isprt=False):
+        df_rst = pd.DataFrame(
+            columns=(
+                '类别',
+                '股票代码',
+                '日期',
+                '快线强弱',
+                '将要金叉周期',
+                '大陆代码'))
+        try:
+            stock_code = stock_base.get_stock_code(market)
+        except sb.ReturnError:
+            print(sb.ReturnError)
+            return
+        if self.jb == 'm':
+            pre = '月K线(即将)金叉'
+        if self.jb == 'd':
+            pre = '日K线(即将)金叉'
+        if self.jb == 'w':
+            pre = '周K线(即将)金叉'
+        if self.jb == '60':
+            pre = '60分钟K线(即将)金叉'
+        if self.jb == '15':
+            pre = '15分钟K线(即将)金叉'
 
         self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
         line = 0
@@ -423,6 +483,15 @@ class MACD_INDEX:
             try:
                 df3 = self.analyze_bing_golden(df2, isprt)
             except ReturnError:
+                pass
+            else:
+                line += 1
+                df_rst.loc[line] = df3
+                continue
+
+            try:
+                df3 = self.analyze_golden(df2, isprt)
+            except ReturnError:
                 continue
             else:
                 line += 1
@@ -436,12 +505,15 @@ class MACD_INDEX:
             columns=(
                 '指标类别',
                 '股票代码',
-                '即将金叉日期',
+                '日期',
                 '快线强弱',
                 '首次金叉时间',
                 '大陆代码'))
         # market不是'all'，从传入的文件取代码
-        stock_code = stock_base.get_stock_code(market)
+        try:
+            stock_code = stock_base.get_stock_code(market)
+        except stock_base.ReturnError:
+            print(stock_base.ReturnError)
 
         if self.jb == 'm':
             pre = '月K线 即将底背离'
@@ -487,7 +559,7 @@ class MACD_INDEX:
             columns=(
                 '类别',
                 '股票代码',
-                '即将金叉日期',
+                '日期',
                 '快线强弱',
                 '将要金叉周期',
                 '大陆代码'))
