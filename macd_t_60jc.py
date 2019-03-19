@@ -11,6 +11,7 @@ if __name__ == "__main__":
     macd_60.save_bottom('D:\\0_stock_macd\\_日K线金叉.xls',False)
 
 
+
     # macd_60 = mb.MACD_INDEX('60')
     # try:
     #     df = macd_60.get_index('sh.600021')
