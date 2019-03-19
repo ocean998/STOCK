@@ -2,7 +2,7 @@ import pandas as pd
 import datetime as dt
 import os
 
-class ReturnError(Exception):
+class stkBaseError(Exception):
     """"各函数返回异常结果时抛出的异常"""
 
     def __init__(self, msg):
@@ -65,7 +65,7 @@ def get_rst_code(path=None):
         data = {'stock_code': code, 'stock_name': name}
         return pd.DataFrame(data, columns=['stock_code', 'stock_name'])
     except:
-        raise ReturnError('get_rst_code error')
+        raise stkBaseError('get_rst_code error')
 
 def get_market_code(market):
     '''
@@ -110,8 +110,8 @@ def get_stock_code(market=None):
             rst = get_market_code(market)
         else:
             rst = get_rst_code(market)
-    except ReturnError:
-        print(ReturnError)
+    except stkBaseError:
+        print(stkBaseError)
     else:
         return rst
 
