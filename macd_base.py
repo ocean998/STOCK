@@ -3,6 +3,7 @@ import pandas as pd
 import stock_base
 import analyze_base as ab
 
+
 class MACD_Error(Exception):
     """"各函数返回异常结果时抛出的异常"""
 
@@ -99,6 +100,7 @@ class MACD_INDEX:
             raise MACD_Error('K线数据少于30个周期，不计算MACD')
         xx = pd.DataFrame()
         xx['time'] = data['time']
+        xx['volume'] = data['volume']
         xx['dif'] = data['close'].ewm(adjust=False,
                                       alpha=2 / (sema + 1),
                                       ignore_na=True).mean() - data['close'].ewm(adjust=False,
@@ -112,8 +114,6 @@ class MACD_INDEX:
 
         ab.set_code(self.code)
         return xx
-
-
 
     def save_golden(self, market='all'):
         df_rst = pd.DataFrame(
@@ -158,14 +158,15 @@ class MACD_INDEX:
                 continue
 
             try:
-                df3 = ab.analyze_golden(df2)
+                df3 = ab.analyze_golden_red(df2)
             except ab.AnalyzeError:
                 continue
             else:
+
                 line += 1
                 df_rst.loc[line] = df3
 
-        print('\n\t\t', '完成！\n')
+        print('\n\t\t', '完成！请打开：', self.save_name, '\n')
         df_rst.to_excel(self.save_name, sheet_name='金叉清单')
 
     def save_bing_golden(self, market='all'):
@@ -219,9 +220,8 @@ class MACD_INDEX:
                 line += 1
                 df_rst.loc[line] = df3
 
-        print('\n\t\t', '完成！\n')
+        print('\n\t\t', '完成！请打开：', self.save_name, '\n')
         df_rst.to_excel(self.save_name, sheet_name='金叉清单')
-
 
     def save_day_golden(self, market='all', isprt=False):
         df_rst = pd.DataFrame(
@@ -287,6 +287,7 @@ class MACD_INDEX:
         df_rst.to_excel(self.save_name, sheet_name='将要金叉清单')
 
     def save_bottom(self, market='all', isprt=False):
+        '''保存底背离股票代码'''
         df_rst = pd.DataFrame(
             columns=(
                 '指标类别',
