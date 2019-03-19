@@ -2,7 +2,7 @@ import baostock as bs
 import pandas as pd
 import stock_base
 import analyze_base as ab
-
+import requests
 
 class MACD_Error(Exception):
     """"各函数返回异常结果时抛出的异常"""
@@ -46,6 +46,41 @@ class MACD_INDEX:
             self.end = end
         print('k线级别:', self.jb, '\t新设置的开始时间:', self.begin, '\t结束时间:', self.end)
 
+    def get_min_index(self, code, jb):
+        '''获取实时数据，60分钟,15分钟'''
+        url = 'http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=####&scale=$$$$&ma=no&datalen=64'
+        mycode = code.split('.')[0]+code.split('.')[1]
+        url2 = url.replace('####', mycode)
+        code_url = url2.replace('$$$$', jb)
+        resp = requests.post(code_url).text
+
+        if len(resp) < 10:
+            raise MACD_Error('url获取数据失败！')
+
+        txt = resp[2:len(resp) - 2]
+
+        df_rst = pd.DataFrame(columns=('time', 'close', 'volume'))
+
+        rst = []
+        point = 0
+        try:
+            for data in txt.split('},{'):
+                for item in data.split(','):
+                    if item.split(':')[0] == 'day':
+                        date = item.split(':')[1] + ':' + item.split(':')[2]
+                        rst.append(date[1:])
+                    if item.split(':')[0] == 'close':
+                        rst.append(float(item.split(':')[1][1:-1]))
+                    if item.split(':')[0] == 'volume':
+                        rst.append(int(item.split(':')[1][1:-1]))
+                    if len(rst) == 3:
+                        point += 1
+                        df_rst.loc[point] = rst
+                        rst.clear()
+        except BaseException:
+            raise MACD_Error('rul 结果解析错误！')
+        return df_rst
+
     def get_index(self, code):
         '''
                 根据周期初始化 开始时间，结束时间，获取远程指标数据
@@ -55,40 +90,37 @@ class MACD_INDEX:
         self.code = code
         if self.jb in ['d', 'w', 'm']:
             indexs = 'date,close,volume,amount,turn'
-        else:
-            indexs = 'time,close,volume,amount'
-        rs = bs.query_history_k_data_plus(
-            code,
-            indexs,
-            start_date=self.begin,
-            end_date=self.end,
-            frequency=self.jb,
-            adjustflag="2")
-        # 复权状态(1：后复权， 2：前复权，3：不复权）
-        if rs.error_code != '0':
-            raise MACD_Error(code + ':k线指标获取失败！' + rs.error_msg)
+            rs = bs.query_history_k_data_plus(
+                code,
+                indexs,
+                start_date=self.begin,
+                end_date=self.end,
+                frequency=self.jb,
+                adjustflag="2")
+            # 复权状态(1：后复权， 2：前复权，3：不复权）
+            if rs.error_code != '0':
+                raise MACD_Error(code + ':k线指标获取失败！' + rs.error_msg)
 
-        data_list = []
-        while (rs.error_code == '0') & rs.next():
-            # 获取一条记录，将记录合并在一起
-            # data_list[-1].append(float(data_list[-1][-1])/float(data_list[-1][-2]))
-            data_list.append(rs.get_row_data())
+            data_list = []
+            while (rs.error_code == '0') & rs.next():
+                # 获取一条记录，将记录合并在一起
+                # data_list[-1].append(float(data_list[-1][-1])/float(data_list[-1][-2]))
+                data_list.append(rs.get_row_data())
 
-        result = pd.DataFrame(data_list, columns=rs.fields)
-        # 修改列名 date-->time
-        if self.jb in ['d', 'w', 'm']:
-            result.rename(columns={'date': 'time'}, inplace=True)
+            result = pd.DataFrame(data_list, columns=rs.fields)
+            # 修改列名 date-->time
+            if self.jb in ['d', 'w', 'm']:
+                result.rename(columns={'date': 'time'}, inplace=True)
+            return result
 
-        for x in range(0, result.shape[0]):
-            # print(str(xx.loc[x][0])[:12])
-            if self.jb in ['60', '15']:
-                result.iloc[x,
-                            0] = result.iloc[x,
-                                             0][4:6] + '-' + result.iloc[x,
-                                                                         0][6:8] + ' ' + result.iloc[x,
-                                                                                                     0][8:10] + ':' + result.iloc[x,
-                                                                                                                                  0][10:12]
-        return result
+        if self.jb in [ '60', '15'  ]:
+            try:
+                rst = self.get_min_index(self.code,str(self.jb))
+            except MACD_Error:
+                raise MACD_Error('url获取数据失败！')
+            else:
+                return rst
+
 
     def get_MACD(self, data, sema=12, lema=26, m_ema=9):
         '''
