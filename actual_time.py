@@ -41,10 +41,14 @@ def get_min_index(code, jb):
     print(code_url)
     if len(resp) < 10:
         raise MACD_Error('url获取数据失败！')
-
+    print(resp)
     txt = resp[2:len(resp) - 2]
 
     df_rst = pd.DataFrame( columns=('date', 'close', 'volume') )
+
+    # 解析网页返回，格式如下
+    # [{day: "2019-03-14 09:45:00", open: "3.890", high: "3.960", low: "3.870", close: "3.960", volume: "123837211"},
+    #  {day: "2019-03-14 10:00:00", open: "3.950", high: "3.960", low: "3.880", close: "3.890", volume: "119944347"}]
 
     rst = []
     point = 0

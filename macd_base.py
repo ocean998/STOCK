@@ -49,7 +49,7 @@ class MACD_INDEX:
     def get_min_index(self, code, jb):
         '''获取实时数据，60分钟,15分钟'''
         url = 'http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=####&scale=$$$$&ma=no&datalen=64'
-        mycode = code.split('.')[0]+code.split('.')[1]
+        mycode = code.replace('.','')
         url2 = url.replace('####', mycode)
         code_url = url2.replace('$$$$', jb)
         resp = requests.post(code_url).text

@@ -231,7 +231,7 @@ def analyze_bottom(macd, isptt=False):
 
     if len(rst2) == 3:
         # rst2[0]：dif将要金叉的高度 ， rst2[2]：第一次金叉的高度,  都要在0轴下
-        if 0 > rst2[0] > rst2[2]:
+        if -0.05 > rst2[0] > rst2[2]:
             # 符合底背离条件，需要再判断是否即将金叉
             try:
                 bing_golden = analyze_bing_golden(macd, isptt)
