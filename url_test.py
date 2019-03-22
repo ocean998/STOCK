@@ -1,5 +1,9 @@
 
-s = 'sz.000725'
-s.replace('.','')
+s = 'CCCBC DBDBC BBBCD BDBDC DADCD BBDCA CADCB CBBCC ACAAD CCACB DDCCD ABAAC CCABC ABBDA BBBBC BDCAD BADAB BACBBADDDDA'
+s =s.replace(' ','')
 print(s)
 
+x = 0
+for y in s:
+	x += 1
+	print(x, y)

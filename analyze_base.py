@@ -59,6 +59,9 @@ def analyze_bing_golden(macd, isprt=False):
         dead_macd = analyze_dead(macd, isprt)
     except AnalyzeError:
         raise AnalyzeError(get_code() + ', 不用判断即将金叉')
+
+    if dead_macd.iloc[-1]['dea'] > 0:
+        raise AnalyzeError(get_code() + ', 零轴上，不用判断即将金叉')
     dead_len = dead_macd.shape[0]
 
     # 死叉macd为负值 所以取最小值
