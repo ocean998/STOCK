@@ -3,8 +3,8 @@ import macd_base as mb
 
 
 if __name__ == "__main__":
-    # macd_w = mb.MACD_INDEX( 'w' )
-    # macd_w.save_golden( 'all' )
+    macd_w = mb.MACD_INDEX( 'w' )
+    macd_w.save_golden( 'all' )
 
     macd_60 = mb.MACD_INDEX('60')
     # 保存底背离
