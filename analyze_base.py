@@ -106,20 +106,21 @@ def analyze_bing_golden(macd, isprt=False):
     else:
         raise AnalyzeError(get_code() + ', 不是即将金叉！')
 
+
 def analyze_golden_red(macd, isprt=False):
-	'''最后3个周期是红柱且越来越长'''
-	try:
-		rst = analyze_golden(macd, isprt)
-	except AnalyzeError:
-		raise AnalyzeError(get_code() + '，不是金叉！')
-	# 3根红柱以上，判断最后3根越来越长
-	if rst[4] > 3:
-		if macd.iloc[-1]['macd'] >  macd.iloc[-2]['macd'] >  macd.iloc[-3]['macd'] :
-			return rst
-		else:
-			raise AnalyzeError(get_code() + '，金叉后红柱没有持续变长！')
-	else:
-		return rst
+    '''最后3个周期是红柱且越来越长'''
+    try:
+        rst = analyze_golden(macd, isprt)
+    except AnalyzeError:
+        raise AnalyzeError(get_code() + '，不是金叉！')
+    # 3根红柱以上，判断最后3根越来越长
+    if rst[4] > 3:
+        if macd.iloc[-1]['macd'] > macd.iloc[-2]['macd'] > macd.iloc[-3]['macd']:
+            return rst
+        else:
+            raise AnalyzeError(get_code() + '，金叉后红柱没有持续变长！')
+    else:
+        return rst
 
 
 def analyze_golden(macd, isprt=False):
