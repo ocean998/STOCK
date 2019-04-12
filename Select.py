@@ -62,9 +62,9 @@ class Ui_MainWindow(object):
         self.textEdit = QtWidgets.QTextEdit(self.horizontalLayoutWidget_3)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setWeight(50)
         self.textEdit.setFont(font)
         self.textEdit.setObjectName("textEdit")
         self.horizontalLayout_3.addWidget(self.textEdit)
@@ -84,12 +84,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "选股神器1.0"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.groupBox.setTitle(_translate("MainWindow", "森森选股"))
         self.pushButton.setText(_translate("MainWindow", "初始化（月、周、日 金叉）"))
         self.pushButton_5.setText(_translate("MainWindow", "初始化（月、周、日  开口向上）"))
-        self.pushButton_2.setText(_translate("MainWindow", "60分钟金叉"))
-        self.pushButton_3.setText(_translate("MainWindow", "60分钟底背离"))
+        self.pushButton_2.setText(_translate("MainWindow", "周金叉 60分钟金叉"))
+        self.pushButton_3.setText(_translate("MainWindow", "周金叉 60分钟底背离"))
         self.pushButton_4.setText(_translate("MainWindow", "15分钟金叉"))
 
 

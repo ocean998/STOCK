@@ -77,14 +77,14 @@
       <item>
        <widget class="QPushButton" name="pushButton_2">
         <property name="text">
-         <string>60分钟金叉</string>
+         <string>周金叉 60分钟金叉</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_3">
         <property name="text">
-         <string>60分钟底背离</string>
+         <string>周金叉 60分钟底背离</string>
         </property>
        </widget>
       </item>
@@ -112,9 +112,9 @@
         <property name="font">
          <font>
           <family>微软雅黑</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
        </widget>
