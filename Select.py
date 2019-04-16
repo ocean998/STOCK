@@ -2,17 +2,16 @@
 
 # Form implementation generated from reading ui file 'Select.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.1
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(709, 608)
+        MainWindow.resize(716, 697)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(12)
@@ -74,6 +73,9 @@ class Ui_MainWindow(object):
         self.textEdit_3 = QtWidgets.QTextEdit(self.horizontalLayoutWidget_3)
         self.textEdit_3.setObjectName("textEdit_3")
         self.horizontalLayout_3.addWidget(self.textEdit_3)
+        self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
+        self.textBrowser.setGeometry(QtCore.QRect(5, 580, 701, 91))
+        self.textBrowser.setObjectName("textBrowser")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -90,9 +92,7 @@ class Ui_MainWindow(object):
         self.pushButton_5.setText(_translate("MainWindow", "初始化（月、周、日  开口向上）"))
         self.pushButton_2.setText(_translate("MainWindow", "周金叉 60分钟金叉"))
         self.pushButton_3.setText(_translate("MainWindow", "周金叉 60分钟底背离"))
-        self.pushButton_4.setText(_translate("MainWindow", "15分钟金叉"))
-
-
+        self.pushButton_4.setText(_translate("MainWindow", "周金叉 60分钟将要金叉"))
 
 
 if __name__ == "__main__":
@@ -103,3 +103,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

@@ -13,7 +13,7 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
         self.setupUi(self)
         self.pushButton_2.clicked.connect(self.golden_60)
         self.pushButton_3.clicked.connect(self.bottom_60)
-        self.pushButton_4.clicked.connect(self.golden_15)
+        self.pushButton_4.clicked.connect(self.bing_golden_60)
 
     def golden_60(self):
         self.statusbar.showMessage('正在获取网络数据计算 周线金叉60分钟级别金叉，请稍等！')
@@ -27,6 +27,19 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
         for x in range(cnt):
             code = stock_code.iloc[x]['stock_code']
             self.textEdit.append(code)
+
+    def bing_golden_60( self ):
+        self.statusbar.showMessage( '正在获取网络数据计算 周线金叉60分钟级别 将要金叉，请稍等！' )
+        macd_d = mb.MACD_INDEX( '60' )
+        macd_d.save_bing_golden( 'D:\\0_stock_macd\\_周K线金叉.xls' )
+        stock_code = stb.get_stock_code( macd_d.save_name )
+
+        cnt = stock_code.shape[ 0 ]
+        code = '周线金叉60分钟级别 将要金叉 '+str( cnt )+' 只'
+        self.textEdit_3.append( code )
+        for x in range( cnt ):
+            code = stock_code.iloc[ x ][ 'stock_code' ]
+            self.textEdit_3.append( code )
 
     def golden_15(self):
         self.statusbar.showMessage('正在获取网络数据计算 日线金叉15分钟级别金叉，请稍等！')
