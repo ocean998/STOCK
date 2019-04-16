@@ -10,26 +10,6 @@ class MACD_Error(Exception):
         Exception.__init__(self)
         self.msg = msg
 
-# url = 'http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000725&scale=15&ma=no&datalen=16'
-# # r = urllib.(url).read()
-# # # r = list(requests.get(url))
-# # print(type(r))
-#
-# response = requests.post( url ).text
-# print(response)
-# x = len(response)
-# print(x)
-# print(type(response))
-# txt = response[2:len(response)-2]
-# print(txt)
-# xx = txt.split('},{')
-# for day in xx:
-#     for y in day.split(','):
-#         print(y)
-#
-# print(float("3.960"))
-# time,close,volume
-#
 
 
 def get_min_index(code, jb):

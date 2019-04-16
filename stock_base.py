@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
-import os
+import tushare as ts
+
 
 class stkBaseError(Exception):
     """"各函数返回异常结果时抛出的异常"""
@@ -8,6 +9,7 @@ class stkBaseError(Exception):
     def __init__(self, msg):
         Exception.__init__(self)
         self.msg = msg
+
 
 def get_start_time(period='d'):
     '''
@@ -53,7 +55,7 @@ def get_start_time(period='d'):
 def get_rst_code(path=None):
     if path is None:
         return None
-    df = pd.read_excel(path)
+    df = pd.read_csv(path)
 
     code = []
     name = []
@@ -64,8 +66,25 @@ def get_rst_code(path=None):
     try:
         data = {'stock_code': code, 'stock_name': name}
         return pd.DataFrame(data, columns=['stock_code', 'stock_name'])
-    except:
+    except BaseException:
         raise stkBaseError('get_rst_code error')
+
+
+def set_market_code():
+    pro = ts.pro_api(
+        '3a225717090aa813ddf5d75c51b9d97349c8f0a38f8cea52e1a8fcff')
+    # 查询当前所有正常上市交易的股票列表
+    data = pro.stock_basic(exchange='', list_status='L', fields='ts_code,name')
+    code = []
+    codes = pd.DataFrame(columns=('stock_code', 'stock_name'))
+    for i in range(1, data.shape[0]):
+        code.append(data.iloc[i]['ts_code'][7:10].lower() +
+                    '.' + data.iloc[i]['ts_code'][0:6])
+        code.append(data.iloc[i]['name'])
+        codes.loc[i] = code
+        code.clear()
+    codes.to_csv('股票代码.csv', index=False, header=True,encoding='utf_8_sig')
+
 
 def get_market_code(market):
     '''
@@ -75,32 +94,12 @@ def get_market_code(market):
         '''
     if market != 'all':
         return None
-    d = os.path.dirname(__file__)  # 返回当前文件所在的目录
-    sh = d + r'\上海股票代码.txt'
-    sz = d + r'\深圳股市代码.txt'
 
     try:
-        f_sz = open(sz, 'r', encoding="utf8")
-        f_sh = open(sh, 'r', encoding="utf8")
-    except Exception:
-        print('不能获取股票代码！检查股票代码文件！')
-        return None
-    code = []
-    name = []
-    # open("filename",'w',encoding="utf8")
-    for line in f_sz.readlines():
-        x = line.split('(')[1]
-        y = line.split('(')[0]
-        code.append('sz.' + x.split(')')[0])
-        name.append(y)
-
-    for line in f_sh.readlines():
-        x = line.split('(')[1]
-        y = line.split('(')[0]
-        code.append('sh.' + x.split(')')[0])
-        name.append(y)
-    data = {'stock_code': code, 'stock_name': name}
-    return pd.DataFrame(data, columns=['stock_code', 'stock_name'])
+        df = pd.read_csv('股票代码.csv',encoding='utf_8_sig')
+        return df
+    except BaseException:
+        raise stkBaseError('get_rst_code error')
 
 
 def get_stock_code(market=None):
@@ -117,7 +116,10 @@ def get_stock_code(market=None):
 
 
 if __name__ == "__main__":
-    # df = stock_base.get_stock_code( 'D:\\0_stock_macd\\_月K线金叉.xls' )
-    # print( df )
-    get_rst_code('D:\\0_stock_macd\\_日K线(即将)金叉.xls')
+    # df = stock_base.get_stock_code( 'D:\\0_stock_macd\\_月K线金叉.csv' )
+    # # print( df )
+    # set_market_code()
+    # get_market_code('all')
 
+    xx = get_stock_code('D:\\0_stock_macd\\_月K线金叉.csv')
+    print(xx)
