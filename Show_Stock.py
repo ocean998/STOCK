@@ -6,15 +6,24 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QThread, pyqtSignal
 import stock_base as stb
 
-class MACD_Calc(QThread):
+
+class show_MessageBox(QThread):
     signal = pyqtSignal()    # 括号里填写信号传递的参数
+
     def __init__(self, msg='提示对话框'):
         super().__init__()
         self.msg = msg
-        
 
-class show_MessageBox(QThread):
+    def __del__(self):
+        self.wait()
+
+    def run(self):
+        QMessageBox.question(self, self.msg, QMessageBox.Yes)
+
+
+class MACD_Calc(QThread):
     signal = pyqtSignal()  # 括号里填写信号传递的参数
+
     def __init__(self, macd='golden_60', textEdit=None):
         super().__init__()
         self.macd = macd
@@ -25,7 +34,7 @@ class show_MessageBox(QThread):
 
     def golden_60(self):
         macd_60 = mb.MACD_INDEX('60')
-        macd_60.save_golden('D:\\0_stock_macd\\_周K线金叉.xls')
+        macd_60.save_golden('D:\\0_stock_macd\\_周K线金叉.csv')
         stock_code = stb.get_stock_code(macd_60.save_name)
         cnt = stock_code.shape[0]
         code = '周线金叉60分钟级别金叉共 ' + str(cnt) + ' 只'
@@ -36,7 +45,7 @@ class show_MessageBox(QThread):
 
     def golden_15(self):
         macd_15 = mb.MACD_INDEX('15')
-        macd_15.save_golden('D:\\0_stock_macd\\_日K线金叉.xls')
+        macd_15.save_golden('D:\\0_stock_macd\\_日K线金叉.csv')
         stock_code = stb.get_stock_code(macd_15.save_name)
 
         cnt = stock_code.shape[0]
@@ -48,7 +57,7 @@ class show_MessageBox(QThread):
 
     def bottom_60(self):
         bottom_60 = mb.MACD_INDEX('60')
-        bottom_60.save_bottom('D:\\0_stock_macd\\_周K线金叉.xls')
+        bottom_60.save_bottom('D:\\0_stock_macd\\_周K线金叉.csv')
         stock_code = stb.get_stock_code(bottom_60.save_name)
 
         cnt = stock_code.shape[0]
@@ -63,10 +72,10 @@ class show_MessageBox(QThread):
         macd_m.save_golden('all')
 
         macd_w = mb.MACD_INDEX('w')
-        macd_w.save_golden('D:\\0_stock_macd\\_月K线金叉.xls')
+        macd_w.save_golden('D:\\0_stock_macd\\_月K线金叉.csv')
 
         macd_d = mb.MACD_INDEX('d')
-        macd_d.save_golden('D:\\0_stock_macd\\_周K线金叉.xls')
+        macd_d.save_golden('D:\\0_stock_macd\\_周K线金叉.csv')
 
     def run(self):
         # 进行任务操作
@@ -101,13 +110,13 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
             self.operating = '正在获取网络数据计算 周线金叉60分钟级别金叉，请稍等！'
             print('self.operating:', self.operating)
             self.statusbar.showMessage('正在获取网络数据计算 周线金叉60分钟级别金叉，请稍等！')
-            self.thread = show_MessageBox('golden_60', self.textEdit)
+            self.thread = MACD_Calc('golden_60', self.textEdit)
             self.thread.signal.connect(self.golden_60)
             self.thread.start()  # 启动线程
         else:
-            print('准备弹出框', self.operating)
-            # QMessageBox.question(self, self.operating, QMessageBox.Yes)
-
+            self.thread_Message = show_MessageBox(self.operating)
+            self.thread_Message.start()
+            return
 
     def golden_60(self):
         self.statusbar.showMessage('周线金叉60分钟级别金叉，计算完成！')
@@ -119,12 +128,12 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
             self.operating = '正在获取网络数据计算 周线金叉且60分钟级别底背离，请稍等！'
             print('self.operating:', self.operating)
             self.statusbar.showMessage('正在获取网络数据计算 周线金叉且60分钟级别底背离，请稍等！')
-            self.thread = show_MessageBox('bottom_60', self.textEdit_2)
+            self.thread = MACD_Calc('bottom_60', self.textEdit_2)
             self.thread.signal.connect(self.bottom_60)
             self.thread.start()  # 启动线程
         else:
-            print(' 准备弹出框', self.operating)
-            # QMessageBox.question(self, self.operating, QMessageBox.Yes)
+            self.thread_Message = show_MessageBox(self.operating)
+            self.thread_Message.start()
             return
 
     def bottom_60(self):
@@ -134,12 +143,13 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
     def btn_golden_15(self):
         if len(self.operating) == 0:
             self.operating = '正在获取网络数据计算 周线金叉且15分钟级别金叉，请稍等！'
-            self.statusbar.show_MessageBox('正在获取网络数据计算 周线金叉且15分钟级别金叉，请稍等！')
+            self.statusbar.showMessage('正在获取网络数据计算 周线金叉且15分钟级别金叉，请稍等！')
             self.thread = MACD_Calc('golden_15', self.textEdit_3)
             self.thread.signal.connect(self.golden_15)
             self.thread.start()  # 启动线程
         else:
-            # QMessageBox.question(self, self.operating, QMessageBox.Yes)
+            self.thread_Message = show_MessageBox(self.operating)
+            self.thread_Message.start()
             return
 
     def golden_15(self):
@@ -150,11 +160,12 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
         if len(self.operating) == 0:
             self.operating = '正在获取网络数据计算完成月、周、日金叉初始化，时间较长请稍等！'
             self.statusbar.showMessage('正在获取网络数据计算完成月、周、日金叉初始化，时间较长请稍等！')
-            self.thread = show_MessageBox('init_mwd', self.textEdit_2)
+            self.thread = MACD_Calc('init_mwd', self.textEdit_2)
             self.thread.signal.connect(self.init_MWD)
             self.thread.start()  # 启动线程
         else:
-            # QMessageBox.question(self, self.operating, QMessageBox.Yes)
+            self.thread_Message = show_MessageBox(self.operating)
+            self.thread_Message.start()
             return
 
     def init_MWD(self):

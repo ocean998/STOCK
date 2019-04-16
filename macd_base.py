@@ -48,6 +48,9 @@ class MACD_INDEX:
 
     def get_min_index(self, code, jb):
         '''获取实时数据，60分钟,15分钟'''
+           # 'http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000725&scale=15&ma=no&datalen=64'
+        # [{day:"2019-04-10 13:45:00",open:"3.930",high:"3.940",low:"3.910",close:"3.910",volume:"20579496"},
+        # {day:"2019-04-10 14:00:00",open:"3.910",high:"3.930",low:"3.910",close:"3.930",volume:"15421922"}
         url = 'http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=####&scale=$$$$&ma=no&datalen=64'
         mycode = code.replace('.','')
         url2 = url.replace('####', mycode)
@@ -58,7 +61,7 @@ class MACD_INDEX:
             raise MACD_Error('url获取数据失败！')
 
         txt = resp[2:len(resp) - 2]
-
+        # DataFrame 初始化和添加一行数据
         df_rst = pd.DataFrame(columns=('time', 'close', 'volume'))
 
         rst = []
@@ -171,7 +174,7 @@ class MACD_INDEX:
         if self.jb == '15':
             pre = '15分钟K线金叉'
 
-        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
+        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.csv'
         line = 0
         cnt = stock_code.shape[0]
         print('开始计算,总数 ' + str(cnt) + ' 只')
@@ -190,6 +193,7 @@ class MACD_INDEX:
                 continue
 
             try:
+                # 金叉且开口向上
                 df3 = ab.analyze_golden_red(df2)
             except ab.AnalyzeError:
                 continue
@@ -199,7 +203,7 @@ class MACD_INDEX:
                 df_rst.loc[line] = df3
 
         print('\n\t\t', '完成！请打开：', self.save_name, '\n')
-        df_rst.to_excel(self.save_name, sheet_name='金叉清单')
+        df_rst.to_csv(self.save_name, index=False, header=True,encoding='utf_8_sig')
 
     def save_bing_golden(self, market='all'):
         """周线选股时，日线即将金叉，或者已经金叉的日线级别增强判断"""
@@ -226,7 +230,7 @@ class MACD_INDEX:
         if self.jb == '15':
             pre = '15分钟K线(即将)金叉'
 
-        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
+        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.csv'
         line = 0
         cnt = stock_code.shape[0]
         print('开始计算,总数 ' + str(cnt) + ' 只')
@@ -253,7 +257,7 @@ class MACD_INDEX:
                 df_rst.loc[line] = df3
 
         print('\n\t\t', '完成！请打开：', self.save_name, '\n')
-        df_rst.to_excel(self.save_name, sheet_name='金叉清单')
+        df_rst.to_csv(self.save_name, index=False, header=True,encoding='utf_8_sig')
 
     def save_day_golden(self, market='all', isprt=False):
         df_rst = pd.DataFrame(
@@ -279,7 +283,7 @@ class MACD_INDEX:
         if self.jb == '15':
             pre = '15分钟K线(即将)金叉'
 
-        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
+        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.csv'
         line = 0
         cnt = stock_code.shape[0]
         print('开始计算,总数 ' + str(cnt) + ' 只')
@@ -316,7 +320,7 @@ class MACD_INDEX:
                 df_rst.loc[line] = df3
 
         print('\n \t\t', '完成！\n')
-        df_rst.to_excel(self.save_name, sheet_name='将要金叉清单')
+        df_rst.to_csv(self.save_name, index=False, header=True,encoding='utf_8_sig')
 
     def save_bottom(self, market='all', isprt=False):
         '''保存底背离股票代码'''
@@ -345,7 +349,7 @@ class MACD_INDEX:
         if self.jb == '15':
             pre = '15分钟K线 即将底背离'
 
-        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
+        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.csv'
         line = 0
         cnt = stock_code.shape[0]
         print('开始计算,总数 ' + str(cnt) + ' 只')
@@ -371,7 +375,7 @@ class MACD_INDEX:
                 df_rst.loc[line] = dbl_rst
 
         print('\n \t\t', '完成！\n')
-        df_rst.to_excel(self.save_name, sheet_name='将要底背离')
+        df_rst.to_csv(self.save_name, index=False, header=True,encoding='utf_8_sig')
 
     def save_top(self, market='all', isprt=False):
         df_rst = pd.DataFrame(
@@ -396,7 +400,7 @@ class MACD_INDEX:
         if self.jb == '15':
             pre = '15分钟K线 顶背离'
 
-        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.xls'
+        self.save_name = 'D:\\0_stock_macd\\' + '_' + pre + '.csv'
         line = 0
         cnt = stock_code.shape[0]
         print('开始计算,总数 ' + str(cnt) + ' 只')
@@ -418,15 +422,15 @@ class MACD_INDEX:
 
 if __name__ == "__main__":
     macd_60 = MACD_INDEX('60')
-    macd_60.save_golden('D:\\0_stock_macd\\_日K线金叉.xls')
+    macd_60.save_golden('D:\\0_stock_macd\\_日K线金叉.csv')
 
     # macd_15 = MACD_INDEX('15')
-    # macd_15.save_golden('D:\\0_stock_macd\\_60分钟K线金叉.xls')
+    # macd_15.save_golden('D:\\0_stock_macd\\_60分钟K线金叉.csv')
 
     # # 日线已经金叉，算60分钟即将金叉
     # macd_60 = MACD_INDEX('60')
-    # # macd_60.save_bing_golden('D:\\0_stock_macd\\_周K线金叉.xls')
-    # macd_60.save_bing_golden('D:\\0_stock_macd\\_日K线金叉.xls', False)
+    # # macd_60.save_bing_golden('D:\\0_stock_macd\\_周K线金叉.csv')
+    # macd_60.save_bing_golden('D:\\0_stock_macd\\_日K线金叉.csv', False)
 
     macd_60 = MACD_INDEX('60')
     macd_60.set_time('2018-06-01', '2018-12-11')
@@ -434,9 +438,9 @@ if __name__ == "__main__":
     macd_60.save_bottom('all', False)
 
     # 周K线已经金叉，算日线即将金叉  # macd_d = MACD_INDEX('d')  #  #
-    # macd_d.save_bing_golden('D:\\0_stock_macd\\_周K线金叉.xls')
+    # macd_d.save_bing_golden('D:\\0_stock_macd\\_周K线金叉.csv')
 
-    # stock_code = stock_base.get_stock_code('D:\\0_stock_macd\\_周K线金叉.xls')
+    # stock_code = stock_base.get_stock_code('D:\\0_stock_macd\\_周K线金叉.csv')
     # # # cnt = stock_code.shape[0]
 
 # 单只股票调试

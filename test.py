@@ -18,7 +18,7 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
     def golden_60(self):
         self.statusbar.showMessage('正在获取网络数据计算 周线金叉60分钟级别金叉，请稍等！')
         macd_d = mb.MACD_INDEX('60')
-        macd_d.save_golden('D:\\0_stock_macd\\_周K线金叉.xls')
+        macd_d.save_golden('D:\\0_stock_macd\\_周K线金叉.csv')
         stock_code = stb.get_stock_code(macd_d.save_name)
 
         cnt = stock_code.shape[0]
@@ -31,7 +31,7 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
     def bing_golden_60( self ):
         self.statusbar.showMessage( '正在获取网络数据计算 周线金叉60分钟级别 将要金叉，请稍等！' )
         macd_d = mb.MACD_INDEX( '60' )
-        macd_d.save_bing_golden( 'D:\\0_stock_macd\\_周K线金叉.xls' )
+        macd_d.save_bing_golden( 'D:\\0_stock_macd\\_周K线金叉.csv' )
         stock_code = stb.get_stock_code( macd_d.save_name )
 
         cnt = stock_code.shape[ 0 ]
@@ -44,7 +44,7 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
     def golden_15(self):
         self.statusbar.showMessage('正在获取网络数据计算 日线金叉15分钟级别金叉，请稍等！')
         macd_d = mb.MACD_INDEX('15')
-        macd_d.save_golden('D:\\0_stock_macd\\_日K线金叉.xls')
+        macd_d.save_golden('D:\\0_stock_macd\\_日K线金叉.csv')
         stock_code = stb.get_stock_code(macd_d.save_name)
 
         cnt = stock_code.shape[0]
@@ -57,7 +57,7 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
     def bottom_60(self):
         self.statusbar.showMessage('正在获取网络数据计算 周线金叉60分钟级别底背离，请稍等！')
         macd_d = mb.MACD_INDEX('60')
-        macd_d.save_bottom('D:\\0_stock_macd\\_周K线金叉.xls')
+        macd_d.save_bottom('D:\\0_stock_macd\\_周K线金叉.csv')
         stock_code = stb.get_stock_code(macd_d.save_name)
 
         cnt = stock_code.shape[0]
@@ -73,10 +73,10 @@ class Slt_Stock(QtWidgets.QMainWindow, sl.Ui_MainWindow):
         macd_m.save_golden('all')
 
         macd_w = mb.MACD_INDEX('w')
-        macd_w.save_golden('D:\\0_stock_macd\\_月K线金叉.xls')
+        macd_w.save_golden('D:\\0_stock_macd\\_月K线金叉.csv')
 
         macd_d = mb.MACD_INDEX('d')
-        macd_d.save_golden('D:\\0_stock_macd\\_周K线金叉.xls')
+        macd_d.save_golden('D:\\0_stock_macd\\_周K线金叉.csv')
 
 
 if __name__ == "__main__":
